@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>API Client</title>
+        <script type="text/javascript">
+
+            function invokeTodo() {
+                alert('clicked');
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //process response
+                        console.log(xhttp.response);
+                    }
+                };
+                xhttp.open("GET", "http://localhost:5000/api/TodoItems", true);
+                xhttp.send();
+            }
+
+
+            function callrestAPI()
+            {
+                alert('clicked');
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //process response
+                        console.log(xhttp.response);
+                    }
+                };
+                xhttp.open("GET", "http://httpbin.org/get?name=tan", true);
+                xhttp.send();
+            }
+
+            function callPOSTAPI() {
+                alert('clicked');
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //process response
+                        console.log(xhttp.response);
+                    }
+                };
+
+                // create a JSON object
+                const json = {
+                    "email": "eve.holt@reqres.in",
+                    "password": "cityslicka"
+                };
+
+                // open request
+                xhttp.open('POST', 'https://reqres.in/api/login');
+
+                // set `Content-Type` header
+                xhttp.setRequestHeader('Content-Type', 'application/json');
+
+                // send rquest with JSON payload
+                xhttp.send(JSON.stringify(json));
+            }
+
+            function addTodo() {
+                alert('clicked');
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //process response
+                        console.log(xhttp.response);
+                    }
+                };
+
+                // create a JSON object
+                const json = {
+                    "id": 1,
+                    "name": "Neo TODO",
+                    "isComplete": false
+                };
+
+                // open request
+                xhttp.open('POST', 'http://localhost:5000/api/TodoItems');
+
+                // set `Content-Type` header
+                xhttp.setRequestHeader('Content-Type', 'application/json');
+
+                // send rquest with JSON payload
+                xhttp.send(JSON.stringify(json));
+            }
+
+
+        </script>
+    </head>
+    <body>
+        <h1>This is an API Client</h1>
+        <h1> In a new branch </h1>
+        <h2> This is a new Change</h2>
+        <button onclick="callPOSTAPI()">Invoke POST from Local</button>
+        <button onclick="callrestAPI()">Invoke GET from GITHUB</button>
+
+        <button onclick="invokeTodo()">Invoke Todo</button>
+        <button onclick="addTodo()">Add Todo</button>
+    </body>
+</html>
